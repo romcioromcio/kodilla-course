@@ -8,14 +8,14 @@ import java.nio.file.Paths;
 import java.util.stream.Stream;
 
 public class FileReader {
-    public void readFile(){
+    public void readFile() throws FileReaderException{
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getResource("file/names.txt").getFile());
 
         try (Stream<String> fileLines = Files.lines(Paths.get(file.getPath()))){
             fileLines.forEach(System.out::println);
         } catch (IOException e){
-            System.out.println("Ups Somthing Wrong" + e);
+            throw new FileReaderException();
         } finally {
             System.out.println("I be always");
         }
