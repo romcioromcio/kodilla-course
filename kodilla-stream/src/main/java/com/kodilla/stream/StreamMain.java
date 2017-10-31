@@ -7,6 +7,6 @@ import com.kodilla.stream.reference.FunctionalCalculator;
 public class StreamMain {
     public static void main(String[] args) {
         PoemBeautifier poemBeautifier = new PoemBeautifier();
-        poemBeautifier.beautify("abc","nn", System.out.println("b") );
+        poemBeautifier.beautify("abc","nn", );
     }
 }
