@@ -30,4 +30,13 @@ class MovieStore {
         return booksTitlesWithTranslations;
     }
 
+    public static void main(String[] args){
+        MovieStore movieStore = new MovieStore();
+
+        Map <String, List<String>> theResultStringOfMovies = movieStore.getMovies();
+
+        theResultStringOfMovies.entrySet().stream()
+                .map(entry -> entry.getKey()  + entry.getValue()+ "!")
+                .forEach(System.out::println);
+    }
 }
