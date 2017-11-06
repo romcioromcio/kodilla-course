@@ -35,9 +35,9 @@ class MovieStore {
 
         Map <String, List<String>> theResultStringOfMovies = movieStore.getMovies();
 
-        theResultStringOfMovies.entrySet().stream().map(i ->i.toString())
-                .collect(Collectors.joining("!","<<",">>"));
+        String result = theResultStringOfMovies.entrySet().stream().map(i ->i.toString())
+                .collect(Collectors.joining(" ! ","<<",">>"));
 
-        System.out.println(theResultStringOfMovies);
+        System.out.println(result);
     }
 }
