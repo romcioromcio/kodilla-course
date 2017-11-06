@@ -19,4 +19,3 @@ public class People {
         return new ArrayList<String>(theList);
     }
 }
-}
