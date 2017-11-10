@@ -5,14 +5,25 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 public class FlightSearch {
-    public void findFilght(Flight flight){
+    public void findFilght(Flight flight) throws RouteNotFoundException {
         Map<String, Boolean> flights = new HashMap<>();
         flights.put("Prabuty", true);
         flights.put("Malbork", true);
         flights.put("Gdańsk", true);
-        //wyszukać przy pomocy stream dany lot i rzucić wyjątkiem gdy niezznaleziono
+
+        if (!flights.containsKey(flight.getArrivalAirport())){
+            throw new RouteNotFoundException();
+        }
+        //wyszukać przy pomocy stream dany lot
     }
     public static void main(String[] args){
-        FlightSearch.findFilght().stream().filter(flight -> flight=="Prabuty");
+        FlightSearch flightSearch = new FlightSearch();
+        try {
+            flightSearch.findFilght(new Flight("Gniew", "Kraków"));
+        } catch (RouteNotFoundException e) {
+            System.out.println("Errors "+ e);
+        } finally {
+            System.out.println("FlightSearch");
+        }
     }
 }

@@ -16,7 +16,7 @@ public class Triangle implements Shape {
 
     @Override
     public double getField() {
-        return Math.PI*Math.pow(r,2);
+        return Math.PI*Math.pow(r,4);
     }
 
     @Override

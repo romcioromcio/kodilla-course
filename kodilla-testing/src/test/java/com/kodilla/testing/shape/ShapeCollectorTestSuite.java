@@ -16,6 +16,29 @@ public class ShapeCollectorTestSuite {
         System.out.println(sc.getShapes().get(0).getShapeName());
         System.out.println(sc.getShapes().get(0).getField());
         Assert.assertEquals(1,sc.getShapes().size());
-
+    }
+    @Test
+    public void removeFigure(){
+        //Given
+        ShapeCollector sc = new ShapeCollector();
+        Shape circle = new Circle("kolo1", 15);
+        sc.addFigure(circle);
+        System.out.println("Collection size on start test removeFigure: "+ sc.getShapes().size());
+        //When
+        sc.removeFigure(circle);
+        //Then
+        Assert.assertEquals(0,sc.getShapes().size());
+        System.out.println("Collection size on end test removeFigure: "+ sc.getShapes().size());
+    }
+    @Test
+    public void getFigure(){
+        //Given
+        ShapeCollector sc = new ShapeCollector();
+        Shape circle = new Circle("kolo1", 15);
+        sc.addFigure(circle);
+        //When
+        sc.getFigure(0);
+        //Then
+        System.out.println("Get in collection from position: 0 " + sc.showFigures());
     }
 }
