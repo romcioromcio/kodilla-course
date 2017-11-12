@@ -14,12 +14,11 @@ public class FlightSearch {
         if (!flights.containsKey(flight.getArrivalAirport())){
             throw new RouteNotFoundException();
         }
-        //wyszukać przy pomocy stream dany lot
     }
     public static void main(String[] args){
         FlightSearch flightSearch = new FlightSearch();
-        try {
-            flightSearch.findFilght(new Flight("Gniew", "Kraków"));
+        try {Map.flights.containsKey(flight.getArrivalAirport());
+            flightSearch.(new Flight("Gniew", "Kraków"));
         } catch (RouteNotFoundException e) {
             System.out.println("Errors "+ e);
         } finally {

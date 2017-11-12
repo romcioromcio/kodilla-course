@@ -18,7 +18,7 @@ public class ShapeCollectorTestSuite {
         Assert.assertEquals(1,sc.getShapes().size());
     }
     @Test
-    public void removeFigure(){
+    public void testRemoveFigure(){
         //Given
         ShapeCollector sc = new ShapeCollector();
         Shape circle = new Circle("kolo1", 15);
@@ -31,7 +31,7 @@ public class ShapeCollectorTestSuite {
         System.out.println("Collection size on end test removeFigure: "+ sc.getShapes().size());
     }
     @Test
-    public void getFigure(){
+    public void testGetFigure(){
         //Given
         ShapeCollector sc = new ShapeCollector();
         Shape circle = new Circle("kolo1", 15);
@@ -39,6 +39,7 @@ public class ShapeCollectorTestSuite {
         //When
         sc.getFigure(0);
         //Then
+        Assert.assertEquals(1,sc.getShapes().size());
         System.out.println("Get in collection from position: 0 " + sc.showFigures());
     }
 }
