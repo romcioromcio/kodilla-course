@@ -17,8 +17,8 @@ public class FlightSearch {
     }
     public static void main(String[] args){
         FlightSearch flightSearch = new FlightSearch();
-        try {Map.flights.containsKey(flight.getArrivalAirport());
-            flightSearch.(new Flight("Gniew", "Kraków"));
+        try {
+            flightSearch.findFilght(new Flight("Gniew", "Kraków"));
         } catch (RouteNotFoundException e) {
             System.out.println("Errors "+ e);
         } finally {
