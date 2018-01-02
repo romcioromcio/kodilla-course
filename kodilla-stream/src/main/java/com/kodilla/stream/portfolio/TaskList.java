@@ -29,7 +29,7 @@ public class TaskList {
 
     @Override
     public String toString() {
-        return "TaskList{" +
+        return "tasklist{" +
                 "name='" + name + '\'' + ",\n" +
                 "tasks=\n" + tasks + "\n" +
                 '}' + "\n";
