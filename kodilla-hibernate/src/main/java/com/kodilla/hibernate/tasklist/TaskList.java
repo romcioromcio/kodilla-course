@@ -14,6 +14,11 @@ public class TaskList {
     private int id;
     private String listName;
     private String description;
+
+    public void setTasks(List<TaskList> tasks) {
+        this.tasks = tasks;
+    }
+
     private List<TaskList> tasks = new ArrayList<>();
 
     public TaskList() {
