@@ -14,12 +14,7 @@ public class TaskList {
     private int id;
     private String listName;
     private String description;
-
-    public void setTasks(List<TaskList> tasks) {
-        this.tasks = tasks;
-    }
-
-    private List<TaskList> tasks = new ArrayList<>();
+    private List<Task> tasks = new ArrayList<>();
 
     public TaskList() {
     }
@@ -35,6 +30,7 @@ public class TaskList {
     public int getId() {
         return id;
     }
+
     @Column(name = "LISTNAME")
     public String getListName() {
         return listName;
@@ -49,19 +45,19 @@ public class TaskList {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    public List<TaskList> getTasks() {
+    public List<Task> getTasks() {
         return tasks;
     }
-    private void setId(int id) {
+    public void setId(int id) {
         this.id = id;
     }
-    private void setListName(String listName) {
+    public void setListName(String listName) {
         this.listName = listName;
     }
-    private void setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
-    private void setTaskList(List<TaskList> tasks) {
+    public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
     }
 }
