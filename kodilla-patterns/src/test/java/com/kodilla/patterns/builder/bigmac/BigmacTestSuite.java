@@ -17,11 +17,14 @@ public class BigmacTestSuite {
                 .ingredient("Becon")
                 .build();
         System.out.println(bigmac);
+
         //When
+
         int howManyBurgers = bigmac.getBurgers();
         int howManyIngredients = bigmac.getIngredients().size();
         String whichRoll = bigmac.getRoll();
         String whichSauce = bigmac.getSauce();
+
         //Then
         Assert.assertEquals(2, howManyBurgers);
         Assert.assertEquals(3, howManyIngredients);
@@ -37,9 +40,11 @@ public class BigmacTestSuite {
                 .sauce("Mayonnaise")
                 .ingredient("Chili pepper")
                 .build();
+
         //When
         int howManyIngredients = bigmac.getIngredients().size();
         String whichSauce = bigmac.getSauce();
+
         //Then
         Assert.assertEquals(0, howManyIngredients);
         Assert.assertNotEquals("Roll with sesame", bigmac.getRoll());
