@@ -4,11 +4,13 @@ import com.kodilla.testing2.config.WebDriverConfig;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -102,25 +104,35 @@ public class CrudAppTestSuite {
 
         return result;
     }
-    private void deleteCrudAppTestTask(String taskName) throws InterruptedException {
+    private void deleteTestTrelloCard(String taskName) {
+        Alert alert = driver.switchTo().alert();
+        alert.dismiss();
+
         driver.navigate().refresh();
 
         while (!driver.findElement(By.xpath("//select[1]")).isDisplayed()) ;
 
-        final String XPATH_DELETE_TASK = "//html/body/main/section[2]/div/form[5]/div/fieldset[1]/button[4]";
-
-        WebElement deleteButton = driver.findElement(By.xpath(XPATH_DELETE_TASK));
-        deleteButton.click();
-
         driver.findElements(By.xpath("//form[@class=\"datatable__row\"]")).stream()
-                .filter(anyForm -> anyForm.findElement(By.xpath(".//p[@class=\"datatable__field-value\"]"))
-                        .getText().equals(taskName))
-
+                .filter(anyForm ->
+                        anyForm.findElement(By.xpath(".//p[@class=\"datatable__field-value\"]"))
+                                .getText().equals(taskName))
                 .forEach(theForm -> {
-                    WebElement buttonDeleteTask = theForm.findElement(By.xpath(".//button[4]"));
-                    buttonDeleteTask.click();
+                    WebElement buttonDeleteCard = theForm.findElement(By.xpath(".//div[contains(@class, \"section-wrapper\")]//button[4]"));
+                    buttonDeleteCard.click();
                 });
-        Thread.sleep(2000);
+
+        List<WebElement> elements = driver.findElements(By.xpath("//form[@class=\"datatable__row\"]"));
+        List<WebElement> buttons= elements.stream()
+                .filter(anyForm ->
+                        anyForm.findElement(By.xpath(".//p[@class=\"datatable__field-value\"]"))
+                                .getText().equals(taskName)).collect(Collectors.toList());
+
+        buttons.stream().forEach(
+                theForm ->{
+                    WebElement selectElement = theForm.findElement(By.xpath(".//select[1]"));
+                    Select select = new Select(selectElement);
+                    select.selectByIndex(1);
+                });
     }
 
     @Test
@@ -128,8 +140,8 @@ public class CrudAppTestSuite {
         String taskName = createCrudAppTestTask();
         sendTestTaskToTrello(taskName);
         assertTrue(checkTaskExistsInTrello(taskName));
+        deleteTestTrelloCard(taskName);
 
-        deleteCrudAppTestTask(taskName);
-        sendTestTaskToTrello(taskName);
+
     }
 }
