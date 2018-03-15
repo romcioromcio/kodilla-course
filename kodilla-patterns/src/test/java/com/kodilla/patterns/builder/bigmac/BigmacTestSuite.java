@@ -7,7 +7,7 @@ public class BigmacTestSuite {
 
     @Test
     public void testBigMac() {
-        //Given
+        //When
         Bigmac bigmac = new Bigmac.BigmacBuilder()
                 .roll("Roll without sesame")
                 .burgers(2)
@@ -17,8 +17,6 @@ public class BigmacTestSuite {
                 .ingredient("Becon")
                 .build();
         System.out.println(bigmac);
-
-        //When
 
         int howManyBurgers = bigmac.getBurgers();
         int howManyIngredients = bigmac.getIngredients().size();
@@ -34,14 +32,13 @@ public class BigmacTestSuite {
 
     @Test(expected = IllegalStateException.class)
     public void testBigMacIncorrectInputs() {
-        //Given
+        //When
         Bigmac bigmac = new Bigmac.BigmacBuilder()
                 .roll("Roll without sesame")
                 .sauce("Mayonnaise")
                 .ingredient("Chili pepper")
                 .build();
 
-        //When
         int howManyIngredients = bigmac.getIngredients().size();
         String whichSauce = bigmac.getSauce();
 

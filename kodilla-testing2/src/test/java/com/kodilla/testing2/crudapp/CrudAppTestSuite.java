@@ -102,34 +102,34 @@ public class CrudAppTestSuite {
 
         return result;
     }
-//    private void deleteCrudAppTestTask(String taskName) throws InterruptedException {
-//        driver.navigate().refresh();
-//
-//        while (!driver.findElement(By.xpath("//select[1]")).isDisplayed()) ;
+    private void deleteCrudAppTestTask(String taskName) throws InterruptedException {
+        driver.navigate().refresh();
 
-//        final String XPATH_DELETE_TASK = "//html/body/main/section[2]/div/form[5]/div/fieldset[1]/button[4]";
-//
-//        WebElement deleteButton = driver.findElement(By.xpath(XPATH_DELETE_TASK));
-//        deleteButton.click();
+        while (!driver.findElement(By.xpath("//select[1]")).isDisplayed()) ;
 
-//        driver.findElements(By.xpath("//form[@class=\"datatable__row\"]")).stream()
-//                .filter(anyForm -> anyForm.findElement(By.xpath(".//p[@class=\"datatable__field-value\"]"))
-//                        .getText().equals(taskName))
-//
-//                .forEach(theForm -> {
-//                    WebElement buttonDeleteTask = theForm.findElement(By.xpath(".//button[4]"));
-//                    buttonDeleteTask.click();
-//                });
-//        Thread.sleep(2000);
-//    }
+        final String XPATH_DELETE_TASK = "//html/body/main/section[2]/div/form[5]/div/fieldset[1]/button[4]";
+
+        WebElement deleteButton = driver.findElement(By.xpath(XPATH_DELETE_TASK));
+        deleteButton.click();
+
+        driver.findElements(By.xpath("//form[@class=\"datatable__row\"]")).stream()
+                .filter(anyForm -> anyForm.findElement(By.xpath(".//p[@class=\"datatable__field-value\"]"))
+                        .getText().equals(taskName))
+
+                .forEach(theForm -> {
+                    WebElement buttonDeleteTask = theForm.findElement(By.xpath(".//button[4]"));
+                    buttonDeleteTask.click();
+                });
+        Thread.sleep(2000);
+    }
 
     @Test
     public void shouldCreateTrelloCard() throws InterruptedException {
         String taskName = createCrudAppTestTask();
-//        sendTestTaskToTrello(taskName);
+        sendTestTaskToTrello(taskName);
         assertTrue(checkTaskExistsInTrello(taskName));
 
-//        deleteCrudAppTestTask(taskName);
-//        sendTestTaskToTrello(taskName);
+        deleteCrudAppTestTask(taskName);
+        sendTestTaskToTrello(taskName);
     }
 }
